@@ -1,24 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
+import 'antd/dist/reset.css';
+import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
+import { Layout, Menu  } from 'antd';
+import Home from './Home';
+import Appointment from './Appointment';
+import { UserOutlined, CalendarOutlined } from '@ant-design/icons';
+const { Header, Content } = Layout;
 
-function App() {
+const App = () => {
+ 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['home']}>
+      <Menu.Item key="home"  icon={<UserOutlined />}>
+        <Link to="/">Home</Link>
+      </Menu.Item>
+      <Menu.Item key="user" icon={<CalendarOutlined  />}>
+      <Link to="/appointment">Appointment</Link>
+      </Menu.Item>
+      
+    </Menu>
+      <div>
+        
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/appointment" element={<Appointment />} />
+         
+        </Routes>
+      </div>
+    
+    </BrowserRouter>
   );
 }
 
